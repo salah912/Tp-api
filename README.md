@@ -8,7 +8,7 @@
 git clone https://github.com/brandgit/TP_API1.git
 cd data-integration2
 
-2. Create a virtual environment
+### 2. Create a virtual environment
 
 python -m venv env
 
