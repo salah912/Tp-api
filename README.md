@@ -1,119 +1,102 @@
+# 📦 TP API - Data Integration Project
 
-## 📦 Installation
+## 🛠️ Installation
 
-### 1. Cloner le projet
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/brandgit/TP_API1.git
 cd data-integration2
-```
 
-### 2. Créer un environnement virtuel
+2. Create a virtual environment
 
-```bash
 python -m venv env
-source env/bin/activate  # Sur macOS/Linux
-# ou
-env\Scripts\activate     # Sur Windows
-```
 
-### 3. Installer les dépendances
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configurer la base de données
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### 5. (Optionnel) Créer un superutilisateur
-
-```bash
-python manage.py createsuperuser
-```
-
-## ⚙️ Configuration
-
-Le projet utilise une configuration Django standard avec :
-- Base de données SQLite (fichier `db.sqlite3`)
-- Debug activé en mode développement
-- Django REST Framework pour les API
-
-## 🚀 Démarrage
-
-### Démarrage local
-
-```bash
-# Activer l'environnement virtuel
+# On macOS/Linux:
 source env/bin/activate
 
-# Démarrer le serveur de développement
+# On Windows:
+env\Scripts\activate
+
+3. Install dependencies
+
+pip install -r requirements.txt
+
+4. Initialize the database
+
+python manage.py makemigrations
+python manage.py migrate
+
+5. (Optional) Create a superuser
+
+python manage.py createsuperuser
+
+⚙️ Configuration
+
+Framework: Django + Django REST Framework
+Database: SQLite (db.sqlite3)
+Mode: Development (DEBUG = True)
+
+🚀 Running the Application
+
+Locally
+
+# Activate the virtual environment
+source env/bin/activate
+
+# Start the development server
 python manage.py runserver
-```
 
-L'application sera accessible sur : `http://localhost:8000`
+Application available at: http://localhost:8000
 
-### Interface d'administration
+Admin Interface
+Available at: http://localhost:8000/admin
 
-Accédez à l'interface d'administration Django : `http://localhost:8000/admin`
+📡 API Endpoints
 
-## 📡 Endpoints API
+Base URL: http://localhost:8000/api/
 
-### Base URL : `http://localhost:8000/api/`
+Method	Endpoint	Description
+GET	/api/test_json_view/	Simple test returning JSON
+POST	/api/test_post_view/	Test a POST request
+GET	/api/products/	Paginated list of products (3/page)
+GET	/api/products/expensive/	Most expensive product
+POST	/api/products/create/	Create a new product
+PUT	/api/products/<id>/update/	Update an existing product
 
-| Méthode | Endpoint | Description |
-|---------|----------|-------------|
-| `GET` | `/api/test_json_view/` | Test simple retournant du JSON |
-| `POST` | `/api/test_post_view/` | Test d'endpoint POST |
-| `GET` | `/api/products/` | Liste paginée des produits (3 par page) |
-| `GET` | `/api/products/expensive/` | Produit le plus cher |
-| `POST` | `/api/products/create/` | Créer un nouveau produit |
-| `PUT` | `/api/products/<id>/update/` | Mettre à jour un produit |
+📥 Usage Examples
 
-### Exemples d'utilisation
+🔧 Create a product
 
-#### Créer un produit
-
-```bash
 curl -X POST http://localhost:8000/api/products/create/ \
   -H "Content-Type: application/json" \
   -d '{
     "name": "iPhone 15",
     "price": 999.99,
-    "description": "Dernier iPhone d'Apple"
+    "description": "Latest iPhone from Apple"
   }'
-```
 
-#### Récupérer la liste des produits
+📃 List all products
 
-```bash
 curl http://localhost:8000/api/products/
-```
 
-#### Mettre à jour un produit
+✏️ Update a product
 
-```bash
 curl -X PUT http://localhost:8000/api/products/1/update/ \
   -H "Content-Type: application/json" \
   -d '{
     "name": "iPhone 15 Pro",
     "price": 1199.99,
-    "description": "iPhone 15 Pro avec fonctionnalités avancées"
+    "description": "iPhone 15 Pro with advanced features"
   }'
-```
 
-## 🐳 Docker
+🐳 Docker Support
 
-### Démarrer avec Docker Compose
+Run with Docker Compose
 
-```bash
-# Construire et démarrer les conteneurs
+# Build and start the containers
 docker-compose up --build
 
-# Démarrer en arrière-plan
+# Or run in detached mode
 docker-compose up -d
-```
+
